@@ -83,9 +83,6 @@
 <div align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=nitinbhandari912&theme=tokyo-night&hide_border=true&area=true" width="95%" alt="Contribution Graph" />
 </div>
-<div align="center">
-  <img src="https://raw.githubusercontent.com/nitinbhandari912/nitinbhandari912/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" />
-</div>
 <!-- Footer Wave -->
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,50:1e3a8a,100:38bdf8&height=100&section=footer" width="100%" alt="Footer" />
