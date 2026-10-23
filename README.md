@@ -84,17 +84,16 @@ I am an **Electronics & Communication Engineering (ECE)** undergraduate at the *
 <table width="100%">
   <tr>
     <td width="50%" valign="top" align="center">
-      <b>LeetCode Live Progress (Auto-Updating)</b><br/><br/>
+      <b>LeetCode Problem Breakdown & Heatmap</b><br/><br/>
       <a href="https://leetcode.com/u/N_LUCARIO/">
-        <img src="https://leetcard.jacoblin.cool/N_LUCARIO?theme=dark&font=Ubuntu&ext=heatmap" width="100%" alt="N_LUCARIO LeetCode Stats" />
+        <img src="https://leetcard.jacoblin.cool/N_LUCARIO?theme=dark&font=Ubuntu&ext=heatmap" width="100%" alt="N_LUCARIO LeetCode Heatmap" />
       </a>
     </td>
     <td width="50%" valign="top" align="center">
-      <b>GitHub Live Streak & Contributions</b><br/><br/>
-      <img src="https://streak-stats.demolab.com?user=nitinbhandari912&theme=dark&hide_border=true" width="100%" alt="GitHub Streak" />
-      <br/>
-      <img src="https://github-readme-activity-graph.vercel.app/graph?username=nitinbhandari912&theme=github-compact&hide_border=true&area=true" width="100%" alt="Contribution Line Graph" />
+      <b>Live LeetCode Streak & Daily Submission Graph</b><br/><br/>
+      <a href="https://leetcode.com/u/N_LUCARIO/">
+        <img src="./leetcode-streak.svg" width="100%" alt="Live LeetCode Streak and Line Graph" />
+      </a>
     </td>
   </tr>
-  <img src="https://raw.githubusercontent.com/nitinbhandari912/nitinbhandari912/main/profile-3d-contrib/profile-night-green.svg" width="100%" alt="3D Contribution Graph" />
 </table>
