@@ -96,4 +96,5 @@ I am an **Electronics & Communication Engineering (ECE)** undergraduate at the *
       <img src="https://github-readme-activity-graph.vercel.app/graph?username=nitinbhandari912&theme=github-compact&hide_border=true&area=true" width="100%" alt="Contribution Line Graph" />
     </td>
   </tr>
+  <img src="https://raw.githubusercontent.com/nitinbhandari912/nitinbhandari912/main/profile-3d-contrib/profile-night-green.svg" width="100%" alt="3D Contribution Graph" />
 </table>
