@@ -1,11 +1,11 @@
 ### Hi 👋, I'm Nitin Bhandari
 
-I am an **Electronics & Communication Engineering (ECE)** undergraduate at the **National Institute of Technology (NIT), Raipur**. I enjoy solving algorithmic problems in **C++**, building clean front-end web interfaces, and taking ideas from concept to execution through hackathons and campus committees.
+I am an **Electronics & Communication Engineering (ECE)** undergraduate at the **National Institute of Technology (NIT), Raipur**. I enjoy solving algorithmic problems in **C++**, building front-end web interfaces, and taking ideas from concept to execution through hackathons and campus committees.
 
-- 🔭 **I’m currently working on:** **Bikri Bot** (an AI-powered assistant for local retailers) and sharpening my Data Structures & Algorithms in **C++**.
-- 🌱 **I’m currently learning:** **Python (Basics)** and solving daily algorithmic problems on [LeetCode (@N_LUCARIO)](https://leetcode.com/u/N_LUCARIO/).
-- 🏛️ **Campus Roles @ NIT Raipur:** **Event Management Executive** at *Think India* & **Innovation Development Executive** at *Innovation Cell*.
-- 💬 **Ask me about:** C++, Data Structures & Algorithms, HTML5, CSS3, JavaScript, and Event & Innovation Management.
+- 🌱 **I’m currently learning:** **JavaScript** and **Data Structures & Algorithms (DSA)** in **C++**, alongside **Python (Basics)**.
+- ⚡ **Daily Practice:** Solving the Daily Coding Challenge and algorithmic problems on [LeetCode (@N_LUCARIO)](https://leetcode.com/u/N_LUCARIO/).
+- 🏛️ **Campus Executive Roles @ NIT Raipur:** **Event Management Executive** (*Think India* & *Shaurya Sports Committee*) and **Innovation Development Executive** (*Innovation Cell*).
+- 💬 **Ask me about:** C++, Data Structures & Algorithms, HTML5, CSS3, JavaScript, and Campus Event & Innovation Management.
 - 📫 **How to reach me:** [LinkedIn](https://www.linkedin.com/in/nitin-bhandari/) • [Email](mailto:YOUR_EMAIL@gmail.com)
 
 ### 🌐 Socials:
@@ -36,15 +36,15 @@ I am an **Electronics & Communication Engineering (ECE)** undergraduate at the *
     <tr>
       <td valign="top">
         <p>
-          <img src="https://skillicons.dev/icons?i=cpp,html,css,js&theme=dark" alt="C++, HTML5, CSS3, JavaScript" />
+          <img src="https://skillicons.dev/icons?i=cpp,html,css&theme=dark" alt="C++, HTML5, CSS3" />
         </p>
-        <sub><b>Core Stack:</b> C++ (Data Structures & Algorithms), HTML5, CSS3, JavaScript</sub>
+        <sub><b>Core Stack:</b> C++, HTML5, CSS3</sub>
       </td>
       <td valign="top">
         <p>
-          <img src="https://skillicons.dev/icons?i=py&theme=dark" alt="Python" />
+          <img src="https://skillicons.dev/icons?i=js,py&theme=dark" alt="JavaScript, Python" />
         </p>
-        <sub><b>Currently Exploring:</b> Python (Basics) & Problem Solving on LeetCode</sub>
+        <sub><b>Currently Learning:</b> JavaScript, Data Structures & Algorithms (DSA), and Python (Basics)</sub>
       </td>
     </tr>
   </tbody>
@@ -58,9 +58,9 @@ I am an **Electronics & Communication Engineering (ECE)** undergraduate at the *
 
 ---
 
-### 💻 Featured Project
+### 💻 Completed Project
 
-* **Bikri Bot** — An AI-powered assistant designed for local retailers to simplify customer query handling, product lookups, and everyday shop workflows through a clean web interface.
+* **Bikri Bot** — An AI-powered assistant built for local retailers to simplify customer query handling, product lookups, and everyday shop workflows through a clean web interface.
 
 ---
 
@@ -69,31 +69,36 @@ I am an **Electronics & Communication Engineering (ECE)** undergraduate at the *
 | Role / Title | Organization / Event | Key Details |
 | :--- | :--- | :--- |
 | **Event Management Executive** | **Think India, NIT Raipur** | Leading event operations, on-ground logistics, and creative prop execution for campus-wide initiatives. |
+| **Event Management Executive** | **Shaurya Sports Committee, NIT Raipur** | Managing sports fest event execution, team coordination, and campus-wide athletic tournament logistics. |
 | **Innovation Development Executive** | **Innovation Cell, NIT Raipur** | Driving student innovation programs, ideation workshops, and technical committee initiatives. |
 | **🥈 2nd Place Winner** | **Vibe Coding — Aavartan (NIT Raipur)** | Secured 2nd place in the competitive coding and rapid-prototyping challenge at NIT Raipur's tech fest. |
-| **AI & Content Writing Intern** | **InAmigos Foundation** | Authored social-impact articles and digital campaigns supporting the *Project Udaan* initiative. |
 | **Hackathon Participant** | **ISRO Bharatiya Antariksh Hackathon** | Formulated the **DRISHI** low-light planetary surface image enhancement concept with *Team Orbitally Inclined*. |
-| **Committee Volunteer** | **NSS & Shaurya Sports Committee, NITRR** | Contributed to rural digital literacy drives (NSS) and sports fest coordination & team management (Shaurya). |
+| **Student Volunteer** | **National Service Scheme (NSS), NIT Raipur** | Contributed to community service camps and rural digital literacy outreach programs. |
 
 **Certifications & Challenges:** *Programming in Python* • *Introduction to Back-End Development* • *Foundations of Cybersecurity* • *BrandStorm National Marketing Challenge*
 
 ---
 
-### 📊 Coding Activity & Live Streak
+### 📊 LeetCode Daily Challenge & GitHub Green Boxes
 
 <table width="100%">
   <tr>
     <td width="50%" valign="top" align="center">
-      <b>LeetCode Problem Breakdown & Heatmap</b><br/><br/>
+      <b>LeetCode Solved Breakdown</b><br/><br/>
       <a href="https://leetcode.com/u/N_LUCARIO/">
         <img src="https://leetcard.jacoblin.cool/N_LUCARIO?theme=dark&font=Ubuntu&ext=heatmap" width="100%" alt="N_LUCARIO LeetCode Heatmap" />
       </a>
     </td>
     <td width="50%" valign="top" align="center">
-      <b>Live LeetCode Streak & Daily Submission Graph</b><br/><br/>
+      <b>LeetCode Daily Challenge Streak</b><br/><br/>
       <a href="https://leetcode.com/u/N_LUCARIO/">
-        <img src="./leetcode-streak.svg" width="100%" alt="Live LeetCode Streak and Line Graph" />
+        <img src="./leetcode-streak.svg" width="100%" alt="Live LeetCode Daily Challenge Streak" />
       </a>
     </td>
   </tr>
 </table>
+
+<div align="center">
+  <b>GitHub Contributions Calendar & Streak (3D Green Boxes)</b><br/><br/>
+  <img src="./profile-3d-contrib/profile-night-green.svg" width="100%" alt="GitHub 3D Green Boxes Contribution Graph" />
+</div>
