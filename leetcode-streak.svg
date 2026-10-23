@@ -1,235 +1,38 @@
-name: Update LeetCode Live Streak & Line Graph
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="315" viewBox="0 0 500 315">
+  <defs>
+    <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="315" rx="10" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
 
-on:
-  schedule:
-    - cron: "0 */6 * * *"
-  workflow_dispatch:
-  push:
-    branches:
-      - main
+  <!-- Header -->
+  <text x="25" y="32" fill="#f0f6fc" font-family="Segoe UI, Ubuntu, sans-serif" font-size="16" font-weight="700">LeetCode Live Streak &amp; Activity — @N_LUCARIO</text>
+  <text x="475" y="32" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11" text-anchor="end">Updated: 23 Oct 2026</text>
+  <line x1="20" y1="45" x2="480" y2="45" stroke="#21262d" stroke-width="1"/>
 
-jobs:
-  update-leetcode-and-github-graphs:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  <!-- Left Stat: Current Streak -->
+  <rect x="20" y="58" width="145" height="105" rx="8" fill="#161b22" stroke="#21262d"/>
+  <text x="92.5" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" font-weight="600" text-anchor="middle">CURRENT STREAK</text>
+  <text x="92.5" y="122" fill="#22c55e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="34" font-weight="800" text-anchor="middle">6 <tspan font-size="15" font-weight="600">Days</tspan></text>
+  <text x="92.5" y="146" fill="#22c55e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Active Streak</text>
 
-      - name: Generate 3D GitHub Green Boxes Graph
-        uses: yoshi389111/github-profile-3d-contrib@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.repository_owner }}
+  <!-- Middle Stat: Longest Streak -->
+  <rect x="177.5" y="58" width="145" height="105" rx="8" fill="#161b22" stroke="#21262d"/>
+  <text x="250" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" font-weight="600" text-anchor="middle">LONGEST STREAK</text>
+  <text x="250" y="122" fill="#f0f6fc" font-family="Segoe UI, Ubuntu, sans-serif" font-size="34" font-weight="800" text-anchor="middle">51 <tspan font-size="15" font-weight="600">Days</tspan></text>
+  <text x="250" y="146" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11" text-anchor="middle">All-Time Record</text>
 
-      - name: Fetch LeetCode Daily Challenge Streak & Generate SVG
-        run: |
-          python3 - << 'EOF'
-          import urllib.request
-          import json
-          from datetime import datetime, timezone, timedelta
+  <!-- Right Stat: Total Solved -->
+  <rect x="335" y="58" width="145" height="105" rx="8" fill="#161b22" stroke="#21262d"/>
+  <text x="407.5" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="12" font-weight="600" text-anchor="middle">TOTAL SOLVED</text>
+  <text x="407.5" y="122" fill="#ffa116" font-family="Segoe UI, Ubuntu, sans-serif" font-size="34" font-weight="800" text-anchor="middle">365</text>
+  <text x="407.5" y="146" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="10.5" text-anchor="middle">E: 186  •  M: 150  •  H: 29</text>
 
-          USERNAME = "N_LUCARIO"
-          url = "https://leetcode.com/graphql"
-
-          def gql_request(query, variables):
-              payload = json.dumps({"query": query, "variables": variables}).encode("utf-8")
-              req = urllib.request.Request(
-                  url,
-                  data=payload,
-                  headers={
-                      "Content-Type": "application/json",
-                      "User-Agent": "Mozilla/5.0"
-                  }
-              )
-              with urllib.request.urlopen(req, timeout=15) as resp:
-                  return json.loads(resp.read().decode("utf-8"))["data"]
-
-          # 1. Fetch User Profile Stats, Calendar, and Recent Accepted Submissions
-          user_query = """
-          query getUserData($username: String!) {
-            matchedUser(username: $username) {
-              submitStatsGlobal {
-                acSubmissionNum {
-                  difficulty
-                  count
-                }
-              }
-              userCalendar {
-                streak
-                totalActiveDays
-                submissionCalendar
-              }
-            }
-            recentAcSubmissionList(username: $username, limit: 100) {
-              titleSlug
-              timestamp
-            }
-          }
-          """
-          user_data = gql_request(user_query, {"username": USERNAME})
-          matched = user_data["matchedUser"]
-          recent_ac = user_data.get("recentAcSubmissionList") or []
-
-          stats = {item["difficulty"]: item["count"] for item in matched["submitStatsGlobal"]["acSubmissionNum"]}
-          total_solved = stats.get("All", 0)
-          easy_solved = stats.get("Easy", 0)
-          med_solved = stats.get("Medium", 0)
-          hard_solved = stats.get("Hard", 0)
-
-          # 2. Fetch Official Daily Coding Challenge Questions (Current & Previous Month)
-          today = datetime.now(timezone.utc).date()
-          first_of_this_month = today.replace(day=1)
-          prev_month_date = first_of_this_month - timedelta(days=1)
-
-          dcc_query = """
-          query getDaily($year: Int!, $month: Int!) {
-            dailyCodingChallengeV2(year: $year, month: $month) {
-              challenges {
-                date
-                question {
-                  titleSlug
-                }
-              }
-            }
-          }
-          """
-          daily_slug_by_date = {}
-          for y, m in [(prev_month_date.year, prev_month_date.month), (today.year, today.month)]:
-              try:
-                  dcc_data = gql_request(dcc_query, {"year": y, "month": m})
-                  challenges = (dcc_data.get("dailyCodingChallengeV2") or {}).get("challenges") or []
-                  for ch in challenges:
-                      d_str = ch.get("date")
-                      slug = (ch.get("question") or {}).get("titleSlug")
-                      if d_str and slug:
-                          daily_slug_by_date[d_str] = slug
-              except Exception:
-                  pass
-
-          # Map each accepted problem slug to the UTC dates it was accepted
-          ac_dates_by_slug = {}
-          for item in recent_ac:
-              slug = item.get("titleSlug")
-              ts = int(item.get("timestamp", 0))
-              if slug and ts > 0:
-                  ac_date_str = datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%d")
-                  ac_dates_by_slug.setdefault(slug, set()).add(ac_date_str)
-
-          def solved_daily_on(d_obj):
-              d_str = d_obj.strftime("%Y-%m-%d")
-              target_slug = daily_slug_by_date.get(d_str)
-              if not target_slug:
-                  return False
-              # Check if user had an AC on that day's Daily Challenge question on that UTC date
-              return d_str in ac_dates_by_slug.get(target_slug, set())
-
-          # 3. Calculate Exact Daily Coding Challenge Streak
-          yesterday = today - timedelta(days=1)
-          daily_challenge_streak = 0
-
-          if solved_daily_on(today):
-              curr = today
-              while solved_daily_on(curr):
-                  daily_challenge_streak += 1
-                  curr -= timedelta(days=1)
-          elif solved_daily_on(yesterday):
-              curr = yesterday
-              while solved_daily_on(curr):
-                  daily_challenge_streak += 1
-                  curr -= timedelta(days=1)
-          else:
-              daily_challenge_streak = 0
-
-          # 4. Parse Submission Calendar for Green-Box Practice Streak & 60-Day Line Graph
-          cal_raw = json.loads(matched["userCalendar"]["submissionCalendar"] or "{}")
-          date_counts = {}
-          for ts_str, count in cal_raw.items():
-              if count > 0:
-                  d = datetime.fromtimestamp(int(ts_str), tz=timezone.utc).date()
-                  date_counts[d] = date_counts.get(d, 0) + count
-
-          practice_streak = 0
-          if today in date_counts:
-              curr = today
-              while curr in date_counts:
-                  practice_streak += 1
-                  curr -= timedelta(days=1)
-          elif yesterday in date_counts:
-              curr = yesterday
-              while curr in date_counts:
-                  practice_streak += 1
-                  curr -= timedelta(days=1)
-
-          days_window = 60
-          series = [date_counts.get(today - timedelta(days=i), 0) for i in range(days_window - 1, -1, -1)]
-          max_val = max(series) if max(series) > 0 else 1
-          chart_x0, chart_x1 = 30, 470
-          chart_y0, chart_y1 = 205, 285
-          width_px = chart_x1 - chart_x0
-          height_px = chart_y1 - chart_y0
-
-          pts = []
-          for idx, val in enumerate(series):
-              x = chart_x0 + (idx / (days_window - 1)) * width_px
-              y = chart_y1 - (val / max_val) * height_px
-              pts.append(f"{x:.1f},{y:.1f}")
-
-          polyline_pts = " ".join(pts)
-          area_pts = f"{chart_x0},{chart_y1} " + polyline_pts + f" {chart_x1},{chart_y1}"
-
-          streak_color = "#22c55e" if daily_challenge_streak > 0 else "#ef4444"
-          status_text = "Daily Challenge Active" if daily_challenge_streak > 0 else "0 Daily Challenge Streak"
-          updated_str = datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%d %b %Y")
-
-          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="500" height="315" viewBox="0 0 500 315">
-            <defs>
-              <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#22c55e" stop-opacity="0.45"/>
-                <stop offset="100%" stop-color="#22c55e" stop-opacity="0.0"/>
-              </linearGradient>
-            </defs>
-            <rect width="500" height="315" rx="10" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
-
-            <!-- Header -->
-            <text x="25" y="32" fill="#f0f6fc" font-family="Segoe UI, Ubuntu, sans-serif" font-size="15.5" font-weight="700">LeetCode Daily Challenge Streak — @{USERNAME}</text>
-            <text x="475" y="32" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11" text-anchor="end">{updated_str}</text>
-            <line x1="20" y1="45" x2="480" y2="45" stroke="#21262d" stroke-width="1"/>
-
-            <!-- Left Stat: Daily Coding Challenge Streak -->
-            <rect x="20" y="58" width="145" height="105" rx="8" fill="#161b22" stroke="#21262d"/>
-            <text x="92.5" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11.5" font-weight="600" text-anchor="middle">DAILY CHALLENGE</text>
-            <text x="92.5" y="122" fill="{streak_color}" font-family="Segoe UI, Ubuntu, sans-serif" font-size="34" font-weight="800" text-anchor="middle">{daily_challenge_streak} <tspan font-size="15" font-weight="600">Days</tspan></text>
-            <text x="92.5" y="146" fill="{streak_color}" font-family="Segoe UI, Ubuntu, sans-serif" font-size="10.5" font-weight="600" text-anchor="middle">{status_text}</text>
-
-            <!-- Middle Stat: Active Practice Streak (Green Boxes) -->
-            <rect x="177.5" y="58" width="145" height="105" rx="8" fill="#161b22" stroke="#21262d"/>
-            <text x="250" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11.5" font-weight="600" text-anchor="middle">GREEN BOX STREAK</text>
-            <text x="250" y="122" fill="#f0f6fc" font-family="Segoe UI, Ubuntu, sans-serif" font-size="34" font-weight="800" text-anchor="middle">{practice_streak} <tspan font-size="15" font-weight="600">Days</tspan></text>
-            <text x="250" y="146" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="10.5" text-anchor="middle">Practice Submissions</text>
-
-            <!-- Right Stat: Total Solved -->
-            <rect x="335" y="58" width="145" height="105" rx="8" fill="#161b22" stroke="#21262d"/>
-            <text x="407.5" y="80" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11.5" font-weight="600" text-anchor="middle">TOTAL SOLVED</text>
-            <text x="407.5" y="122" fill="#ffa116" font-family="Segoe UI, Ubuntu, sans-serif" font-size="34" font-weight="800" text-anchor="middle">{total_solved}</text>
-            <text x="407.5" y="146" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="10.5" text-anchor="middle">E: {easy_solved}  •  M: {med_solved}  •  H: {hard_solved}</text>
-
-            <!-- Bottom Line Graph Section -->
-            <text x="25" y="188" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11" font-weight="600">DAILY LEETCODE SUBMISSIONS (LAST 60 DAYS)</text>
-            <line x1="30" y1="285" x2="470" y2="285" stroke="#21262d" stroke-width="1"/>
-            <polygon points="{area_pts}" fill="url(#areaGrad)"/>
-            <polyline fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="{polyline_pts}"/>
-          </svg>'''
-
-          with open("leetcode-streak.svg", "w", encoding="utf-8") as f:
-              f.write(svg)
-          EOF
-
-      - name: Commit and Push Updated Graphs
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add leetcode-streak.svg profile-3d-contrib/
-          git diff --staged --quiet || git commit -m "chore: update LeetCode Daily Challenge streak and 3D GitHub graph"
-          git push
+  <!-- Bottom Line Graph Section -->
+  <text x="25" y="188" fill="#8b949e" font-family="Segoe UI, Ubuntu, sans-serif" font-size="11" font-weight="600">DAILY LEETCODE SUBMISSIONS (LAST 60 DAYS)</text>
+  <line x1="30" y1="285" x2="470" y2="285" stroke="#21262d" stroke-width="1"/>
+  <polygon points="30,285 30.0,276.1 37.5,276.1 44.9,276.1 52.4,267.2 59.8,285.0 67.3,276.1 74.7,276.1 82.2,267.2 89.7,267.2 97.1,267.2 104.6,276.1 112.0,205.0 119.5,267.2 126.9,276.1 134.4,267.2 141.9,276.1 149.3,276.1 156.8,267.2 164.2,285.0 171.7,276.1 179.2,276.1 186.6,276.1 194.1,285.0 201.5,267.2 209.0,285.0 216.4,276.1 223.9,276.1 231.4,276.1 238.8,276.1 246.3,276.1 253.7,276.1 261.2,285.0 268.6,285.0 276.1,276.1 283.6,276.1 291.0,276.1 298.5,267.2 305.9,285.0 313.4,276.1 320.8,276.1 328.3,276.1 335.8,276.1 343.2,267.2 350.7,267.2 358.1,276.1 365.6,276.1 373.1,276.1 380.5,276.1 388.0,276.1 395.4,267.2 402.9,276.1 410.3,276.1 417.8,285.0 425.3,276.1 432.7,276.1 440.2,276.1 447.6,276.1 455.1,258.3 462.5,276.1 470.0,285.0 470,285" fill="url(#areaGrad)"/>
+  <polyline fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" points="30.0,276.1 37.5,276.1 44.9,276.1 52.4,267.2 59.8,285.0 67.3,276.1 74.7,276.1 82.2,267.2 89.7,267.2 97.1,267.2 104.6,276.1 112.0,205.0 119.5,267.2 126.9,276.1 134.4,267.2 141.9,276.1 149.3,276.1 156.8,267.2 164.2,285.0 171.7,276.1 179.2,276.1 186.6,276.1 194.1,285.0 201.5,267.2 209.0,285.0 216.4,276.1 223.9,276.1 231.4,276.1 238.8,276.1 246.3,276.1 253.7,276.1 261.2,285.0 268.6,285.0 276.1,276.1 283.6,276.1 291.0,276.1 298.5,267.2 305.9,285.0 313.4,276.1 320.8,276.1 328.3,276.1 335.8,276.1 343.2,267.2 350.7,267.2 358.1,276.1 365.6,276.1 373.1,276.1 380.5,276.1 388.0,276.1 395.4,267.2 402.9,276.1 410.3,276.1 417.8,285.0 425.3,276.1 432.7,276.1 440.2,276.1 447.6,276.1 455.1,258.3 462.5,276.1 470.0,285.0"/>
+</svg>
