@@ -79,26 +79,21 @@ I am an **Electronics & Communication Engineering (ECE)** undergraduate at the *
 
 ---
 
-### 📊 LeetCode Daily Challenge & GitHub Green Boxes
+### 📊 Coding Activity & Live Streaks
 
 <table width="100%">
   <tr>
-    <td width="50%" valign="top" align="center">
-      <b>LeetCode Solved Breakdown</b><br/><br/>
+    <td width="46%" valign="middle" align="center">
       <a href="https://leetcode.com/u/N_LUCARIO/">
-        <img src="https://leetcard.jacoblin.cool/N_LUCARIO?theme=dark&font=Ubuntu&ext=heatmap" width="100%" alt="N_LUCARIO LeetCode Heatmap" />
+        <img src="https://leetcard.jacoblin.cool/N_LUCARIO?theme=dark&font=Ubuntu&ext=heatmap&border=0" width="100%" alt="N_LUCARIO LeetCode Heatmap" />
       </a>
-    </td>
-    <td width="50%" valign="top" align="center">
-      <b>LeetCode Daily Challenge Streak</b><br/><br/>
+      <br/><br/>
       <a href="https://leetcode.com/u/N_LUCARIO/">
         <img src="./leetcode-streak.svg" width="100%" alt="Live LeetCode Daily Challenge Streak" />
       </a>
     </td>
+    <td width="54%" valign="middle" align="center">
+      <img src="./github-3d.svg" width="100%" alt="3D Isometric GitHub Contributions & Streak" />
+    </td>
   </tr>
 </table>
-
-<div align="center">
-  <b>GitHub Contributions Calendar & Streak (3D Green Boxes)</b><br/><br/>
-  <img src="./profile-3d-contrib/profile-night-green.svg" width="100%" alt="GitHub 3D Green Boxes Contribution Graph" />
-</div>
